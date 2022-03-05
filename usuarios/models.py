@@ -6,6 +6,7 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+
 class Funcionario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula = models.CharField(verbose_name="MatFunc", max_length=200)

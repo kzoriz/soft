@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from system.models import Paciente, PacienteInfantil
+from pacientes.models import Paciente, PacienteInfantil
 
 
 class PacienteForm(forms.ModelForm):

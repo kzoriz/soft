@@ -1,5 +1,5 @@
 from django.urls import path
-from system.views import pacientes, registrar_paciente, \
+from pacientes.views import pacientes, registrar_paciente, \
     agenda, inicio, PacienteUpdate, paciente_detalhes, PacienteDelete, registrar_paciente_inf, paciente_detalhes_inf, \
     PacienteInfantilUpdate, PacienteInfantilDelete, registrar_paciente_2, opcoes
 

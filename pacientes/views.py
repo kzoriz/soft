@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 
 from prontuario.models import Prontuario, DadosMedicos, Medicamentos, Saude, ExameFisicoIB, PlanoTratamento, \
     CondOclusal, Odontograma, PSR, Procedimento
-from system.forms import PacienteForm, PacienteInfantilForm
+from pacientes.forms import PacienteForm, PacienteInfantilForm
 from django.views.generic.edit import UpdateView, DeleteView
-from system.models import Paciente, PacienteInfantil
+from pacientes.models import Paciente, PacienteInfantil
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime

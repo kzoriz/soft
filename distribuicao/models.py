@@ -1,5 +1,5 @@
 from django.db import models
-from system.models import Paciente
+from pacientes.models import Paciente
 from usuarios.models import Discente, Docente
 
 

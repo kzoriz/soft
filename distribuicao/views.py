@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
-from distribuir_paciente.forms import DistribuicaoForm
+from distribuicao.forms import DistribuicaoForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from .models import Distribuicao, Disciplina

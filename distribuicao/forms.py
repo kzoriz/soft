@@ -1,7 +1,7 @@
 from django import forms
 
-from distribuir_paciente.models import Disciplina, Distribuicao
-from system.models import Paciente
+from distribuicao.models import Disciplina, Distribuicao
+from pacientes.models import Paciente
 from usuarios.models import Discente, Docente
 '''
 queryset_pacientes = Paciente.objects.all()

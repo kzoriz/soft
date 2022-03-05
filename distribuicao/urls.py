@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from distribuir_paciente.views import distribuir_paciente_index, DistribuicaoCreateView, DisciplinaCreateView,\
+from distribuicao.views import distribuir_paciente_index, DistribuicaoCreateView, DisciplinaCreateView,\
     disciplinas, disciplina_detalhes, DisciplinaUpdate, DisciplinaDelete, distribuicoes
 
 urlpatterns = [

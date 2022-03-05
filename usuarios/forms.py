@@ -17,8 +17,6 @@ class FuncionarioForm(mforms.ModelForm):
         fields = '__all__'
 
 from django import forms
-from django.forms import fields
-from system.models import Paciente, PacienteInfantil
 
 
 class DiscenteForm(forms.ModelForm):
