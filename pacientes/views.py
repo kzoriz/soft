@@ -176,7 +176,7 @@ class PacienteInfantilDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def inicio(request):
-    return render(request, "pacientes/pacientes/inicio.html")
+    return render(request, "pacientes/inicio.html")
 
 
 @login_required
