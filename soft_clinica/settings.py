@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #my apps
     'pacientes.apps.PacientesConfig',
+    'usuarios.apps.UsuariosConfig',
     'distribuicao.apps.DistribuicaoConfig',
     'prontuario.apps.ProntuarioConfig',
 
