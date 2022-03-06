@@ -4,8 +4,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
-
+    apelido = models.CharField("apelido", max_length=200)
 
 class Funcionario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
