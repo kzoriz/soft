@@ -1,6 +1,6 @@
 from django import forms
 
-from distribuicao.models import Disciplina, Distribuicao
+from distribuicao.models import Disciplina
 from pacientes.models import Paciente
 from usuarios.models import Discente, Docente
 '''
@@ -18,9 +18,4 @@ class DistribuicaoForm(forms.Form):
 class DisciplinaForm(forms.ModelForm):
     class Meta:
         model = Disciplina
-        fields = "__all__"
-
-class DistribuicaoForm(forms.ModelForm):
-    class Meta:
-        model = Distribuicao
         fields = "__all__"
