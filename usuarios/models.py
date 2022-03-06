@@ -24,7 +24,7 @@ class Docente(models.Model):
     email = models.EmailField(verbose_name="Email", max_length=200)
 
     def __str__(self):
-        return self.nome + " - " + self.matricula
+        return self.nome
 
 class Discente(models.Model):
 
