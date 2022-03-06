@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
 from usuarios.forms import UserCreationForm
 from django.contrib import messages
-from .models import User, Funcionario, Docente, Discente
+from models import User, Funcionario, Docente, Discente
 
 
 def signup_view(request):
@@ -50,6 +48,7 @@ def cadastro_funcionario(request):
         return redirect('inicio')
     return render(request, template_name, context)
 
+
 def cadastro_docente(request):
     template_name = 'usuarios/docente_cadastro.html'
     titulo = 'Cadastrar Docente'
@@ -79,6 +78,7 @@ def cadastro_docente(request):
         messages.success(request, 'Docente Cadastrado!')
         return redirect('inicio')
     return render(request, template_name, context)
+
 
 def cadastro_discente(request):
     template_name = 'usuarios/discente_cadastro.html'
@@ -110,3 +110,4 @@ def cadastro_discente(request):
         messages.success(request, 'Discente Cadastrado!')
         return redirect('inicio')
     return render(request, template_name, context)
+
