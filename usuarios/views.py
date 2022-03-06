@@ -42,7 +42,7 @@ def cadastro_funcionario(request):
 
         u = User.objects.create_user(username=nome, email=None, password=senha1)
         u.save()
-        c = Funcionario(nome=nome, email=email, matricula=matricula, telefone=telefone, usuario=u)
+        c = Funcionario(usuario=u, matricula=matricula, nome=nome, telefone=telefone, email=email)
         c.save()
         messages.success(request, 'Funcionario Cadastrado!')
         return redirect('inicio')

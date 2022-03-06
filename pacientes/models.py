@@ -5,6 +5,7 @@ SEXO_BIOLOGICO = [
     ("MASCULINO", "masculino"),
     ("FEMININO", "feminino"),
 ]
+
 RACA = [
     ("BRANCO", "branco"),
     ("PARDO", "pardo"),
@@ -12,6 +13,7 @@ RACA = [
     ("INDIGENA", "indigena"),
     ("AMARELO", "amarelo"),
 ]
+
 ESTADO_CIVIL = [
     ("SOLTEIRO", "Solteiro"),
     ("CASADO", "Casado"),
@@ -23,6 +25,7 @@ A_F = [
     ("S", "Sim"),
     ("N", "Não"),
 ]
+
 GRAU_INSTRUCAO = [
     ('NIVEL 1', (
         ('ANALFABETO', 'Analfabeto'),
@@ -51,6 +54,7 @@ GRAU_INSTRUCAO = [
     )
      ),
 ]
+
 UF_CHOICES = (
     ('AC', 'Acre'),
     ('AM', 'Amazonas'),
@@ -80,10 +84,12 @@ UF_CHOICES = (
     ('SP', 'São Paulo'),
     ('TO', 'Tocantins')
 )
+
+
 class Paciente(models.Model):
     nome = models.CharField(verbose_name="Nome", max_length=200)
     nome_social = models.CharField(verbose_name="Nome Social", max_length=200, blank=True)
-    data_nascimento =models.DateField(verbose_name="Data de Nascimento", auto_now=False, auto_now_add=False)
+    data_nascimento = models.DateField(verbose_name="Data de Nascimento", auto_now=False, auto_now_add=False)
     sexo_biologico = models.CharField(verbose_name="Sexo Biologico", max_length=9, choices=SEXO_BIOLOGICO)
     rg = models.CharField(verbose_name="RG", max_length=16, blank=True)
     cpf = models.CharField(verbose_name="CPF", max_length=14, default="86777069178")
@@ -92,14 +98,16 @@ class Paciente(models.Model):
     grau_instrucao = models.CharField(verbose_name="Grau de Instrução", max_length=200, choices=GRAU_INSTRUCAO)
     endereco = models.CharField(verbose_name="Endereço", max_length=200, default="Rua Antônio Barbosa Sobrinho")
     cep = models.CharField(verbose_name="CEP", max_length=9, default="39651970")
-    bairro = models.CharField(verbose_name="Bairro", max_length=200,default="Centro")
+    bairro = models.CharField(verbose_name="Bairro", max_length=200, default="Centro")
     cidade = models.CharField(verbose_name="Cidade", max_length=200, default="Ribeirão da Folha")
     uf = models.CharField(verbose_name="UF", max_length=2, choices=UF_CHOICES)
     telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=11, default="33991514101")
-    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares", default="Dados de importância para a história clínica.")
+    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares",
+                                               default="Dados de importância para a história clínica.")
 
     def __str__(self):
         return self.nome
+
 
 class PacienteInfantil(models.Model):
     responsavel = models.CharField(verbose_name="Reponsavel", max_length=200)
@@ -118,7 +126,8 @@ class PacienteInfantil(models.Model):
     cidade = models.CharField(verbose_name="Cidade", max_length=200, default="Ribeirão da Folha")
     uf = models.CharField(verbose_name="UF", max_length=2, choices=UF_CHOICES)
     telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=11, default="33991514101")
-    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares",default="Dados de importância para a história clínica.")
+    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares",
+                                               default="Dados de importância para a história clínica.")
 
     def __str__(self):
         return self.nome
@@ -126,3 +135,4 @@ class PacienteInfantil(models.Model):
     class Meta:
         verbose_name = "Paciente Infantil"
         verbose_name_plural = "Pacientes Infantis"
+
