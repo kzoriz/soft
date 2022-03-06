@@ -2,7 +2,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content%}
-<div class="container">
+<body class="body">
+    <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"></h1>
     </div>
@@ -33,7 +34,7 @@
                           <td></td>
                           <td>
                               <div class="">
-                                  <a href="{% url 'disciplina_editar' disciplina.pk %}" class="btn btn-warning btn-sm">Editar Disciplina</a>
+                                  <a href="{% url 'disciplina_editar' disciplina.pk %}" class="btn btn-warning btn-md">Editar Disciplina</a>
                               </div>
                           </td>
                      </tbody>
@@ -46,4 +47,5 @@
         </div>
     </div>
 </div>
+</body>
 {% endblock content%}

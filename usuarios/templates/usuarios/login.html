@@ -7,15 +7,22 @@
 {% block login %}
 {% endblock login %}
 <div class="container" >
-    <div class="col-md-5 mx-auto">
-        <form method="post" action=".">
-            <p><b>Login</b></p>
-            {% csrf_token %}
-            {{form|crispy }}
-            <div class="row mx-auto">
-                <button class="btn btn-primary btn-sm"  type="submit" >Entrar</button>
-            </div>
-        </form>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"></h1>
+    </div>
+        <div class="col-md-5 mx-auto">
+            <div class="card shadow mb-4">
+            <div class="card-body">
+            <form method="post" action=".">
+                <p><b>Login</b></p>
+                {% csrf_token %}
+                {{form|crispy }}
+                <div class="text-right">
+                    <button class="btn btn-primary btn-md"  type="submit" >Entrar</button>
+                </div>
+            </form>
+        </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
