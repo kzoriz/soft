@@ -57,7 +57,7 @@ def registrar_paciente(request):
         "form": form,
         "messages": messages.success,
     }
-    return render(request, "system/paciente_registrar.html", context)
+    return render(request, "pacientes/paciente_registrar.html", context)
 
 
 @login_required
@@ -74,7 +74,7 @@ def registrar_paciente_inf(request):
         "form": form,
         "messages": messages.success,
     }
-    return render(request, "system/paciente_registrar_inf.html", context=context)
+    return render(request, "pacientes/paciente_registrar_inf.html", context=context)
 
 
 @login_required
@@ -90,20 +90,20 @@ def pacientes(request):
         "dados_medicos": todos_dados_medicos,
 
     }
-    return render(request, "system/pacientes.html", context)
+    return render(request, "pacientes/pacientes.html", context)
 
 
 def agenda(request):
     context = {
     }
-    return render(request, "system/agenda.html", context)
+    return render(request, "pacientes/agenda.html", context)
 
 
 @login_required
 def opcoes(request):
     context = {
     }
-    return render(request, "system/opcoes.html", context)
+    return render(request, "pacientes/opcoes.html", context)
 
 
 @login_required
@@ -132,7 +132,7 @@ def paciente_detalhes(request, pk=None):
         'psr': psr,
         'proc': proc,
     }
-    return render(request, 'system/paciente_detalhes.html', context)
+    return render(request, 'pacientes/paciente_detalhes.html', context)
 
 
 @login_required
@@ -141,14 +141,14 @@ def paciente_detalhes_inf(request, pk=None):
     context = {
         'object': instance
     }
-    return render(request, 'system/paciente_detalhes_inf.html', context)
+    return render(request, 'pacientes/paciente_detalhes_inf.html', context)
 
 
 class PacienteUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy("login")
     model = Paciente
     fields = "__all__"
-    template_name = "system/paciente_editar.html"
+    template_name = "pacientes/paciente_editar.html"
     success_url = reverse_lazy("pacientes")
 
 
@@ -156,29 +156,29 @@ class PacienteInfantilUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy("login")
     model = PacienteInfantil
     fields = "__all__"
-    template_name = "system/paciente_editar_inf.html"
+    template_name = "pacientes/paciente_editar_inf.html"
     success_url = reverse_lazy("pacientes")
 
 
 class PacienteDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy("login")
     model = Paciente
-    template_name = "system/paciente_delete.html"
+    template_name = "pacientes/paciente_delete.html"
     success_url = reverse_lazy("pacientes")
 
 
 class PacienteInfantilDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy("login")
     model = PacienteInfantil
-    template_name = "system/paciente_delete_inf.html"
+    template_name = "pacientes/paciente_delete_inf.html"
     success_url = reverse_lazy("pacientes")
 
 
 @login_required
 def inicio(request):
-    return render(request, "system/inicio.html")
+    return render(request, "pacientes/inicio.html")
 
 
 @login_required
 def registrar_paciente_2(request):
-    return render(request, "system/pacientes_menu.html")
+    return render(request, "pacientes/pacientes_menu.html")
