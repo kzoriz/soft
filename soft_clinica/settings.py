@@ -147,8 +147,6 @@ LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
 
-AUTH_USER_MODEL = "usuarios.User"
-
 # Configure Django App for Heroku.
 
 django_on_heroku.settings(locals())
