@@ -113,7 +113,6 @@ def paciente_detalhes(request, pk=None):
     cond = CondOclusal.objects.get(pk=pk)
     odon = Odontograma.objects.get(pk=pk)
     psr = PSR.objects.get(pk=pk)
-    proc = Procedimento.objects.get(pk=pk)
     context = {
         'object': instance,
         'prontuario': prontuario,
@@ -125,7 +124,6 @@ def paciente_detalhes(request, pk=None):
         'cond': cond,
         'odon': odon,
         'psr': psr,
-        'proc': proc,
     }
     return render(request, 'pacientes/paciente_detalhes.html', context)
 
