@@ -118,7 +118,7 @@ class PSR(models.Model):
 
 
 class Procedimento(models.Model):
-    prontuario = models.OneToOneField(Prontuario, on_delete=models.CASCADE)
+    prontuario = models.CharField("NumProntuario", max_length=200)
     cpf = models.CharField("CPF", max_length=100, blank=True)
     reg_dente = models.CharField("Região do Dente", max_length=50, blank=True)
     procedimento = models.CharField("Procedimento", max_length=50, blank=True)

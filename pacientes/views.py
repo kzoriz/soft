@@ -45,11 +45,6 @@ def registrar_paciente(request):
             m.save()
             n = PSR(prontuario=u)
             n.save()
-            o = Procedimento(
-                prontuario=u,
-                cpf=paciente.cpf,
-            )
-            o.save()
             messages.success(request, "Paciente registrado com sucesso")
             return redirect("inicio")
     context = {
