@@ -2,9 +2,9 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-
 class User(AbstractUser):
-    apelido = models.CharField("apelido", max_length=200)
+    pass
+
 
 class Funcionario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,6 +16,7 @@ class Funcionario(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Docente(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula = models.CharField(verbose_name="MatDocente", max_length=200)
@@ -26,11 +27,12 @@ class Docente(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Discente(models.Model):
 
     PERIODO = [
-        ('1','1º'),
-        ('2','2º'),
+        ('1', '1º'),
+        ('2', '2º'),
         ('3', '3º'),
         ('4', '4º'),
         ('5', '5º'),
