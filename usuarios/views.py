@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from usuarios.forms import UserCreationForm
 from django.contrib import messages
-from models import User, Funcionario, Docente, Discente
+from .models import User, Funcionario, Docente, Discente
 
 
 def signup_view(request):

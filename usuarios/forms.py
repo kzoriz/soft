@@ -1,16 +1,16 @@
-from django.contrib.auth import forms as nforms
-from models import User, Funcionario, Discente
+from django.contrib.auth import forms
+from .models import User, Funcionario, Discente
 from django import forms as mforms
-from django import forms
+from django import forms as xforms
 
 
-class UserChangeForm(nforms.UserChangeForm):
-    class Meta(nforms.UserChangeForm.Meta):
+class UserChangeForm(forms.UserChangeForm):
+    class Meta(forms.UserChangeForm.Meta):
         model = User
 
 
-class UserCreationForm(nforms.UserCreationForm):
-    class Meta(nforms.UserCreationForm.Meta):
+class UserCreationForm(forms.UserCreationForm):
+    class Meta(forms.UserCreationForm.Meta):
         model = User
 
 
@@ -20,8 +20,7 @@ class FuncionarioForm(mforms.ModelForm):
         fields = '__all__'
 
 
-class DiscenteForm(forms.ModelForm):
+class DiscenteForm(xforms.ModelForm):
     class Meta:
         model = Discente
         fields = "__all__"
-
