@@ -1,6 +1,6 @@
 from django.db import models
 from pacientes.models import Paciente
-
+from django.urls import reverse
 
 C_CHOICES = [
     ('SIM', 'SIM'),
@@ -17,7 +17,6 @@ class Prontuario(models.Model):
 
 
 class DadosMedicos(models.Model):
-
     prontuario = models.OneToOneField(Prontuario, on_delete=models.CASCADE)
     temp_trat = models.CharField("Tempo de Tratamento", max_length=50, blank=True)
     causa = models.CharField("Causa", max_length=50, blank=True)
@@ -53,7 +52,7 @@ class Medicamentos(models.Model):
     alergias = models.CharField("Alergias", max_length=50, blank=True)
 
     def __str__(self):
-        return self.prontuario
+        return self.prontuario.paciente.nome
 
 
 class Saude(models.Model):
@@ -125,3 +124,96 @@ class Procedimento(models.Model):
 
     def __str__(self):
         return self.cpf
+
+
+class Anamnese(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    anamnese = models.TextField(verbose_name="Anamnese")
+
+    def get_absolute_url(self):
+        return reverse("anamnese_detalhes", kwargs={"pk": self.pk})
+
+
+class InfSaudeSistemica(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    antecedentes_familiares = models.TextField(verbose_name="Antecedentes Familiares")
+    medicamentos_em_uso = models.TextField(verbose_name="Medicamentos Em uso")
+    cirurgias_anteriores = models.TextField(verbose_name="Cirurgias Anteriores")
+    problemas_cardiacos = models.TextField(verbose_name="Problemas Cardiacos")
+    problemas_gastrointestinais = models.TextField(verbose_name="Problemas Gastrointestinais")
+    alteracoes_sanguineas = models.TextField(verbose_name="Alterações Sanguineas")
+    enfermidades_osseas = models.TextField(verbose_name="Enfermidades Ósseas")
+    problemas_pulmonares = models.TextField(verbose_name="Problemas Pulmonares")
+    alergias = models.TextField("alergias")
+    habitos = models.TextField(verbose_name="Hábitos")
+    observacao = models.TextField(verbose_name="Há Alguma Informação Sobre Sua Saúde Que Não Foi Perguntada?")
+
+
+class ExameFisico(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    nodulos_linfaticos = models.TextField(verbose_name="Nódulos Linfáticos")
+    amigdalas = models.TextField(verbose_name="Amígdalas")
+    trigono_retromolar= models.TextField(verbose_name="Trígono Retromolar")
+    palato_duto = models.TextField(verbose_name="Palato Duro")
+    palato_mole = models.TextField(verbose_name="Palato Mole")
+    labios = models.TextField(verbose_name="Lábios")
+    pele = models.TextField(verbose_name="Pele")
+    atm = models.TextField(verbose_name="ATM")
+    vestibulo = models.TextField(verbose_name="Vestíbulo")
+    higiene_bucal = models.TextField(verbose_name="Higiene Bucal")
+
+
+class SinaisVitaisClinicos(models.Model):
+    PLACA_VISIVEL = [
+        ('0', '0'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+    ]
+    CHOICES_RESULTADO = [
+        ('Higiene Boa', 'Higiene Boa'),
+        ('Higiene Regular', 'Higiene regular'),
+        ('Higiene Ruim', 'Higiene Ruim'),
+    ]
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    pressao_arterial = models.TextField(verbose_name="Pressão Arterial")
+    pulso = models.TextField(verbose_name="Pulso")
+    respiracao = models.TextField(verbose_name="Respiração")
+    temperatura = models.TextField(verbose_name="Temperatura")
+    placa_visivel_16v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    placa_visivel_11v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    placa_visivel_26v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    placa_visivel_36v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    placa_visivel_31v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    placa_visivel_46v = models.CharField(verbose_name="16V", choices=PLACA_VISIVEL, max_length=1)
+    indice = models.CharField(verbose_name="Indíce", max_length=5)
+    resultado = models.CharField(verbose_name="Resultado", choices=CHOICES_RESULTADO, max_length=15)
+
+class PsrRegPeriodSimplif(models.Model):
+    SEXTANTE = [
+        ('0', '0'),
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+    ]
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    sextante_16v = models.CharField(verbose_name="Sextante 16V", choices=SEXTANTE, max_length=1)
+    sextante_11v = models.CharField(verbose_name="Sextante 11V", choices=SEXTANTE, max_length=1)
+    sextante_26v = models.CharField(verbose_name="Sextante 26V", choices=SEXTANTE, max_length=1)
+    sextante_36v = models.CharField(verbose_name="Sextante 36V", choices=SEXTANTE, max_length=1)
+    sextante_31v = models.CharField(verbose_name="Sextante 31V", choices=SEXTANTE, max_length=1)
+    sextante_46v = models.CharField(verbose_name="Sextante 46V", choices=SEXTANTE, max_length=1)
+

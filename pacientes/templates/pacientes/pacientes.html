@@ -16,13 +16,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">CPF</th>
+                            <th scope="col">Data Cadastro</th>
                             <th scope="col">Nome</th>
                         </tr>
                     </thead>
                     {% for paciente in todos_pacientes %}
                      <tbody class="link">
-                        <td>{{ paciente.cpf }}</td>
+                        <td>{{ paciente.created_at }}</td>
                         <td><a id="link" href="{% url 'paciente_detalhes' paciente.pk %}">{{paciente.nome | upper}}</a></td>
                      </tbody>
                     {% endfor %}

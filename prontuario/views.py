@@ -1,8 +1,14 @@
+import self
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
-from prontuario.models import DadosMedicos, Medicamentos, Saude, ExameFisicoIB, PlanoTratamento, \
-    CondOclusal, Odontograma, PSR, Procedimento
+
+import prontuario
+from prontuario.models import *
+from django.contrib import messages
+from django.urls import reverse
 
 
 class DadosMedicosUpdate(LoginRequiredMixin, UpdateView):
@@ -81,3 +87,55 @@ class ProcedimentoUpdate(LoginRequiredMixin, UpdateView):
     fields = "__all__"
     template_name = "prontuario/prontuario_geral.html"
     success_url = reverse_lazy("pacientes")
+
+
+def anamnese_detalhes(request, pk=None):
+    object = Anamnese.objects.get(pk=pk)
+    #prontuario = Prontuario.objects.get(pk=pk)
+    context = {
+        'object': object,
+        'prontuario': prontuario,
+    }
+    return render(request, 'prontuario/anamnese_detalhes.html', context)
+
+
+class AnamneseUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    login_url = reverse_lazy("login")
+    extra_context = {'nome_pagina': 'Anamnese'}
+    model = Anamnese
+    fields = ['anamnese', ]
+    template_name = "prontuario/anamnese_editar.html"
+    #success_url = reverse_lazy("pacientes")
+    #success_url = reverse_lazy("anamnese_detalhes", kwargs={'slug': self.slug})
+    #success_message = "Atualizado"
+    #context_object_name = 'anamnese'
+
+
+class InfSaudeSistemicaUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    login_url = reverse_lazy("login")
+    extra_context = {'nome_pagina': 'Informção de Saúde Sistemica'}
+    model = Anamnese
+    fields = "__all__"
+    template_name = "prontuario/anamnese_editar.html"
+    #success_url = reverse_lazy("pacientes")
+    #success_url = reverse_lazy("anamnese_detalhes", kwargs={'slug': self.slug})
+    #success_message = "Atualizado"
+    #context_object_name = 'anamnese'
+
+
+def inf_saude_sistemica_detalhes(request, pk=None):
+    object = InfSaudeSistemica.objects.get(pk=pk)
+    prontuario = Prontuario.objects.get(pk=pk)
+    context = {
+        'object': object,
+        'prontuario': prontuario,
+    }
+    return render(request, 'prontuario/inf_saude_sistemica.html', context)
+
+
+
+
+
+
+
+

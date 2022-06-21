@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
+
 SEXO_BIOLOGICO = [
     ("MASCULINO", "masculino"),
     ("FEMININO", "feminino"),
@@ -65,13 +67,13 @@ UF_CHOICES = (
     ('DF', 'Distrito Federal'),
     ('ES', 'Espírito Santo'),
     ('GO', 'Goiás'),
-    ('MA', 'Maranão'),
+    ('MA', 'Maranhão'),
     ('MG', 'Minas Gerais'),
     ('MS', 'Mato Grosso do Sul'),
     ('MT', 'Mato Grosso'),
     ('PA', 'Pará'),
     ('PB', 'Paraíba'),
-    ('PE', 'Pernanbuco'),
+    ('PE', 'Pernambuco'),
     ('PI', 'Piauí'),
     ('PR', 'Paraná'),
     ('RJ', 'Rio de Janeiro'),
@@ -87,47 +89,49 @@ UF_CHOICES = (
 
 
 class Paciente(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     nome = models.CharField(verbose_name="Nome", max_length=200)
     nome_social = models.CharField(verbose_name="Nome Social", max_length=200, blank=True)
     data_nascimento = models.DateField(verbose_name="Data de Nascimento", auto_now=False, auto_now_add=False)
-    sexo_biologico = models.CharField(verbose_name="Sexo Biologico", max_length=9, choices=SEXO_BIOLOGICO)
-    rg = models.CharField(verbose_name="RG", max_length=16, blank=True)
-    cpf = models.CharField(verbose_name="CPF", max_length=14, default="86777069178")
-    raca = models.CharField(verbose_name="Raça", max_length=9, choices=RACA)
-    estado_civil = models.CharField(verbose_name="Estado Civil", max_length=10, choices=ESTADO_CIVIL)
-    grau_instrucao = models.CharField(verbose_name="Grau de Instrução", max_length=200, choices=GRAU_INSTRUCAO)
-    endereco = models.CharField(verbose_name="Endereço", max_length=200, default="Rua Antônio Barbosa Sobrinho")
-    cep = models.CharField(verbose_name="CEP", max_length=9, default="39651970")
-    bairro = models.CharField(verbose_name="Bairro", max_length=200, default="Centro")
-    cidade = models.CharField(verbose_name="Cidade", max_length=200, default="Ribeirão da Folha")
-    uf = models.CharField(verbose_name="UF", max_length=2, choices=UF_CHOICES)
-    telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=11, default="33991514101")
-    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares",
-                                               default="Dados de importância para a história clínica.")
+    sexo_biologico = models.CharField(verbose_name="Sexo Biologico", max_length=200, blank=True)
+    rg = models.CharField(verbose_name="RG", max_length=200, blank=True)
+    cpf = models.CharField(verbose_name="CPF", max_length=200)
+    raca = models.CharField(verbose_name="Raça", max_length=200)
+    estado_civil = models.CharField(verbose_name="Estado Civil", max_length=200)
+    grau_instrucao = models.CharField(verbose_name="Grau de Instrução", max_length=200)
+    endereco = models.CharField(verbose_name="Endereço", max_length=200)
+    cep = models.CharField(verbose_name="CEP", max_length=200)
+    bairro = models.CharField(verbose_name="Bairro", max_length=200)
+    cidade = models.CharField(verbose_name="Cidade", max_length=200)
+    uf = models.CharField(verbose_name="UF", max_length=2)
+    telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=200)
+    informacoes_complementares = models.TextField(verbose_name="Informações Complementares")
 
     def __str__(self):
         return self.nome
 
+    def get_absolute_url(self):
+        return reverse("paciente_detalhes", kwargs={"pk": self.pk})
 
 class PacienteInfantil(models.Model):
     responsavel = models.CharField(verbose_name="Reponsavel", max_length=200)
     nome = models.CharField(verbose_name="Nome", max_length=200)
     nome_social = models.CharField(verbose_name="Nome Social", max_length=200, blank=True)
     data_nascimento = models.DateField(verbose_name="Data de Nascimento", auto_now=False, auto_now_add=False)
-    sexo_biologico = models.CharField(verbose_name="Sexo Biologico", max_length=9, choices=SEXO_BIOLOGICO)
-    rg = models.CharField(verbose_name="RG", max_length=16, blank=True)
-    cpf = models.CharField(verbose_name="CPF", max_length=14, default="86777069178")
-    raca = models.CharField(verbose_name="Raça", max_length=9, choices=RACA)
-    estado_civil = models.CharField(verbose_name="Estado Civil", max_length=10, choices=ESTADO_CIVIL)
-    grau_instrucao = models.CharField(verbose_name="Grau de Instrução", max_length=200, choices=GRAU_INSTRUCAO)
-    endereco = models.CharField(verbose_name="Endereço", max_length=200, default="Rua Antônio Barbosa Sobrinho")
-    cep = models.CharField(verbose_name="CEP", max_length=9, default="39651970")
-    bairro = models.CharField(verbose_name="Bairro", max_length=200, default="Centro")
-    cidade = models.CharField(verbose_name="Cidade", max_length=200, default="Ribeirão da Folha")
-    uf = models.CharField(verbose_name="UF", max_length=2, choices=UF_CHOICES)
-    telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=11, default="33991514101")
-    antecedentes_familiares = models.TextField(verbose_name="Antecedente Familiares",
-                                               default="Dados de importância para a história clínica.")
+    sexo_biologico = models.CharField(verbose_name="Sexo Biologico", max_length=200)
+    rg = models.CharField(verbose_name="RG", max_length=200, blank=True)
+    cpf = models.CharField(verbose_name="CPF", max_length=200)
+    raca = models.CharField(verbose_name="Raça", max_length=200)
+    estado_civil = models.CharField(verbose_name="Estado Civil", max_length=200)
+    grau_instrucao = models.CharField(verbose_name="Grau de Instrução", max_length=200)
+    endereco = models.CharField(verbose_name="Endereço", max_length=200)
+    cep = models.CharField(verbose_name="CEP", max_length=200)
+    bairro = models.CharField(verbose_name="Bairro", max_length=200)
+    cidade = models.CharField(verbose_name="Cidade", max_length=200)
+    uf = models.CharField(verbose_name="UF", max_length=200)
+    telefone_celular = models.CharField(verbose_name="Telefone Celular", max_length=200)
+    informacoes_complementares = models.TextField(verbose_name="Informações Complementares")
 
     def __str__(self):
         return self.nome

@@ -150,3 +150,4 @@ LOGIN_URL = 'login'
 # Configure Django App for Heroku.
 
 django_on_heroku.settings(locals())
+
