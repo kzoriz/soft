@@ -155,6 +155,7 @@ class InfSaudeSistemica(models.Model):
     def get_absolute_url(self):
         return reverse("inf_sau_sis_detalhes", kwargs={"pk": self.pk})
 
+
 class ExameFisico(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
