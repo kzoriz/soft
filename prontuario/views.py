@@ -114,21 +114,18 @@ class AnamneseUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class InfSaudeSistemicaUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     login_url = reverse_lazy("login")
     extra_context = {'nome_pagina': 'Informção de Saúde Sistemica'}
-    model = Anamnese
-    fields = "__all__"
-    template_name = "prontuario/anamnese_editar.html"
-    #success_url = reverse_lazy("pacientes")
-    #success_url = reverse_lazy("anamnese_detalhes", kwargs={'slug': self.slug})
-    #success_message = "Atualizado"
-    #context_object_name = 'anamnese'
+    model = InfSaudeSistemica
+    #fields = "__all__"
+    fields = ['antecedentes_familiares', 'medicamentos_em_uso', 'cirurgias_anteriores', 'problemas_cardiacos',
+              'problemas_gastrointestinais', 'alteracoes_sanguineas', 'enfermidades_osseas', 'problemas_pulmonares',
+              'alergias', 'habitos', 'observacao']
+    template_name = "prontuario/inf_saude_sistemica_editar.html"
 
 
 def inf_saude_sistemica_detalhes(request, pk=None):
     object = InfSaudeSistemica.objects.get(pk=pk)
-    prontuario = Prontuario.objects.get(pk=pk)
     context = {
         'object': object,
-        'prontuario': prontuario,
     }
     return render(request, 'prontuario/inf_saude_sistemica.html', context)
 

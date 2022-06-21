@@ -9,7 +9,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Prontuario</label>
-                        <input type="text" class="form-control" value="{{ prontuario.num_prontuario }}" disabled>
+                        <input type="text" class="form-control" value="{{ object.prontuario }}" disabled>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Atualizado em:</label>
@@ -91,7 +91,7 @@
                 <a href="{% url 'pacientes' %}" class="btn btn-secondary text-white" type="button">
                     <span class="text">Voltar</span>
                 </a>
-                <a href="{% url 'paciente_editar' object.pk %}" class="btn btn-warning text-white" type="button">
+                <a href="{% url 'inf_sau-sis_edit' object.pk %}" class="btn btn-warning text-white" type="button">
                     <span class="text">Atualizar</span>
                 </a>
                 <a href="{% url 'paciente_delete' object.pk %}" class="btn btn-danger text-white" type="button">
