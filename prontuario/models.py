@@ -15,7 +15,7 @@ class Prontuario(models.Model):
     def __str__(self):
         return self.num_prontuario
 
-
+'''
 class DadosMedicos(models.Model):
     prontuario = models.OneToOneField(Prontuario, on_delete=models.CASCADE)
     temp_trat = models.CharField("Tempo de Tratamento", max_length=50, blank=True)
@@ -116,6 +116,7 @@ class PSR(models.Model):
     classificacao = models.CharField("Classificação", max_length=100, blank=True)
 
 
+
 class Procedimento(models.Model):
     prontuario = models.CharField("NumProntuario", max_length=200)
     cpf = models.CharField("CPF", max_length=100, blank=True)
@@ -124,6 +125,7 @@ class Procedimento(models.Model):
 
     def __str__(self):
         return self.cpf
+'''
 
 
 class Anamnese(models.Model):
@@ -162,7 +164,7 @@ class ExameFisico(models.Model):
     prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
     nodulos_linfaticos = models.TextField(verbose_name="Nódulos Linfáticos")
     amigdalas = models.TextField(verbose_name="Amígdalas")
-    trigono_retromolar= models.TextField(verbose_name="Trígono Retromolar")
+    trigono_retromolar = models.TextField(verbose_name="Trígono Retromolar")
     palato_duto = models.TextField(verbose_name="Palato Duro")
     palato_mole = models.TextField(verbose_name="Palato Mole")
     labios = models.TextField(verbose_name="Lábios")
@@ -170,6 +172,9 @@ class ExameFisico(models.Model):
     atm = models.TextField(verbose_name="ATM")
     vestibulo = models.TextField(verbose_name="Vestíbulo")
     higiene_bucal = models.TextField(verbose_name="Higiene Bucal")
+
+    def get_absolute_url(self):
+        return reverse("exa_fis_detalhes", kwargs={"pk": self.pk})
 
 
 class SinaisVitaisClinicos(models.Model):
@@ -201,7 +206,11 @@ class SinaisVitaisClinicos(models.Model):
     indice = models.CharField(verbose_name="Indíce", max_length=5)
     resultado = models.CharField(verbose_name="Resultado", choices=CHOICES_RESULTADO, max_length=15)
 
-class PsrRegPeriodSimplif(models.Model):
+    def get_absolute_url(self):
+        return reverse("sin_vit_cli_detalhes", kwargs={"pk": self.pk})
+
+
+class PSR(models.Model):
     SEXTANTE = [
         ('0', '0'),
         ('1', '1'),
@@ -220,3 +229,96 @@ class PsrRegPeriodSimplif(models.Model):
     sextante_31v = models.CharField(verbose_name="Sextante 31V", choices=SEXTANTE, max_length=1)
     sextante_46v = models.CharField(verbose_name="Sextante 46V", choices=SEXTANTE, max_length=1)
 
+    def get_absolute_url(self):
+        return reverse("psr_detalhes", kwargs={"pk": self.pk})
+
+
+class OdontogramaInicial(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    d11 = models.TextField(verbose_name="11")
+    d12 = models.TextField(verbose_name="12")
+    d13 = models.TextField(verbose_name="13")
+    d14 = models.TextField(verbose_name="14")
+    d15 = models.TextField(verbose_name="15")
+    d16 = models.TextField(verbose_name="16")
+    d17 = models.TextField(verbose_name="17")
+    d18 = models.TextField(verbose_name="18")
+    d21 = models.TextField(verbose_name="21")
+    d22 = models.TextField(verbose_name="22")
+    d23 = models.TextField(verbose_name="23")
+    d24 = models.TextField(verbose_name="24")
+    d25 = models.TextField(verbose_name="25")
+    d26 = models.TextField(verbose_name="26")
+    d27 = models.TextField(verbose_name="27")
+    d28 = models.TextField(verbose_name="28")
+    d31 = models.TextField(verbose_name="31")
+    d32 = models.TextField(verbose_name="32")
+    d33 = models.TextField(verbose_name="33")
+    d34 = models.TextField(verbose_name="34")
+    d35 = models.TextField(verbose_name="35")
+    d36 = models.TextField(verbose_name="36")
+    d37 = models.TextField(verbose_name="37")
+    d38 = models.TextField(verbose_name="38")
+    d41 = models.TextField(verbose_name="41")
+    d42 = models.TextField(verbose_name="42")
+    d43 = models.TextField(verbose_name="43")
+    d44 = models.TextField(verbose_name="44")
+    d45 = models.TextField(verbose_name="45")
+    d46 = models.TextField(verbose_name="46")
+    d47 = models.TextField(verbose_name="47")
+    d48 = models.TextField(verbose_name="48")
+
+    def get_absolute_url(self):
+        return reverse("odo_ini_detalhes", kwargs={"pk": self.pk})
+
+
+class SolicitacaoExamesComplementares(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    sol_exa_com = models.TextField(verbose_name="Solicitação exames Complementares")
+
+    def get_absolute_url(self):
+        return reverse("sol_exa_com_detalhes", kwargs={"pk": self.pk})
+
+
+class ResultadoExamesComplementares(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    res_exa_com = models.TextField(verbose_name="Resulatdo Exames Complementares")
+
+    def get_absolute_url(self):
+        return reverse("res_exa_com_detalhes", kwargs={"pk": self.pk})
+
+
+class PlanoTratamentoI(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    plano_tratamento_i = models.TextField(verbose_name="Plano de Tratamento 1º Opção")
+
+    def get_absolute_url(self):
+        return reverse("pla_tra_ii_detalhes", kwargs={"pk": self.pk})
+
+
+class PlanoTratamentoII(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    plano_tratamento_ii = models.TextField(verbose_name="Plano de Tratamento 2º Opção")
+
+    def get_absolute_url(self):
+        return reverse("pla_tra_i_detalhes", kwargs={"pk": self.pk})
+
+
+class EvolucaoPaciente(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
+    evolucao_paciente = models.TextField(verbose_name="Evolução do Paciente")
+
+    def get_absolute_url(self):
+        return reverse("evo_pac_detalhes", kwargs={"pk": self.pk})

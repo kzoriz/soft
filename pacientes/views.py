@@ -85,20 +85,6 @@ def registrar_paciente(request):
         p.save()
         u = Prontuario(paciente=p, num_prontuario=b+c+d)
         u.save()
-        v = DadosMedicos(prontuario=u)
-        v.save()
-        w = Medicamentos(prontuario=u)
-        w.save()
-        s = Saude(prontuario=u)
-        s.save()
-        y = ExameFisicoIB(prontuario=u)
-        y.save()
-        z = PlanoTratamento(prontuario=u)
-        z.save()
-        r = CondOclusal(prontuario=u)
-        r.save()
-        m = Odontograma(prontuario=u)
-        m.save()
         n = PSR(prontuario=u)
         n.save()
         o = Anamnese(prontuario=u)
@@ -107,7 +93,7 @@ def registrar_paciente(request):
         l.save()
 
         messages.success(request, "Paciente registrado com sucesso")
-        return redirect("inicio")
+        return redirect("pacientes")
     return render(request, "pacientes/paciente_registrar2.html", context)
 
 
@@ -131,14 +117,12 @@ def registrar_paciente_inf(request):
 @login_required
 def pacientes(request):
     todos_pacientes = Paciente.objects.order_by("nome")
-    todos_dados_medicos = DadosMedicos.objects.all()
     todos_pacientes_inf = PacienteInfantil.objects.order_by("-id")
 
     context = {
         "nome_pagina": "Pacientes",
         "todos_pacientes": todos_pacientes,
         "todos_pacientes_inf": todos_pacientes_inf,
-        "dados_medicos": todos_dados_medicos,
 
     }
     return render(request, "pacientes/pacientes.html", context)

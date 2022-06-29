@@ -114,6 +114,7 @@ class Paciente(models.Model):
     def get_absolute_url(self):
         return reverse("paciente_detalhes", kwargs={"pk": self.pk})
 
+
 class PacienteInfantil(models.Model):
     responsavel = models.CharField(verbose_name="Reponsavel", max_length=200)
     nome = models.CharField(verbose_name="Nome", max_length=200)

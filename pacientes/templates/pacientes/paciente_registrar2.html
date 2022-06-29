@@ -37,7 +37,7 @@
 
                 <div class="form-group col-md-3">
                     <label>Data de nascimento</label>
-                    <input type="date" class="form-control" value="{{ object.data_nascimento }}" name="data_nascimento">
+                    <input type="text" class="form-control" id="id_data" value="{{ object.data_nascimento }}" name="data_nascimento">
                 </div>
 
                 <div class="form-group col-md-3">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>CPF</label>
-                    <input type="text" class="form-control" value="{{ object.cpf }}" name="cpf">
+                    <input type="text" class="form-control" id="id_cpf" value="{{ object.cpf }}" name="cpf">
                 </div>
                 <div class="form-group col-md-4">
                     <label>Raça</label>
@@ -114,7 +114,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Cep</label>
-                    <input type="text" class="form-control" value="{{ object.cep}}" name="cep">
+                    <input type="text" class="form-control" id="id_cep" value="{{ object.cep}}" name="cep">
                 </div>
                 <div class="form-group col-md-4">
                     <label>Bairro</label>
@@ -183,3 +183,14 @@
     </div>
 </div>
 {% endblock content%}
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        alert("ok");
+        $("#id_data").mask("00/00/0000");
+        $('#id_cep').mask('00000-000');
+        $('#id_cpf').mask('000.000.000-00');
+        });
+</script>
+{% endblock scripts %}
