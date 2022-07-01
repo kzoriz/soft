@@ -21,6 +21,7 @@ class AnamneseUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Anamnese
     fields = ['anamnese', ]
     template_name = "prontuario/anamnese_editar.html"
+    success_message = "Anamnese atualizada com Sucesso!"
 
 
 def inf_saude_sistemica_detalhes(request, pk=None):
@@ -33,12 +34,13 @@ def inf_saude_sistemica_detalhes(request, pk=None):
 
 class InfSaudeSistemicaUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     login_url = reverse_lazy("login")
-    extra_context = {'nome_pagina': 'Informção de Saúde Sistemica'}
+    extra_context = {'nome_pagina': 'Informações de Saúde Sistemica'}
     model = InfSaudeSistemica
     fields = ['antecedentes_familiares', 'medicamentos_em_uso', 'cirurgias_anteriores', 'problemas_cardiacos',
               'problemas_gastrointestinais', 'alteracoes_sanguineas', 'enfermidades_osseas', 'problemas_pulmonares',
               'alergias', 'habitos', 'observacao']
     template_name = "prontuario/inf_saude_sistemica_editar.html"
+    success_message = "Informações de saúde Sistêmica atualizadas com Sucesso!"
 
 
 def exame_fisico_detalhes(request, pk=None):

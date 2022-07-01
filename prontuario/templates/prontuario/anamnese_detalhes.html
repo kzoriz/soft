@@ -3,16 +3,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% for message in messages %}
-<div class="alert alert-success" role="alert">
-    {{ message }}
-</div>
-{% endfor %}
-
 <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <div class="card shadow mb-4">
         <div class="card-body"><br>
-            <b>ANAMNESE</b>
+            <h1 class="mb-3 text-primary">
+                <b>ANAMNESE</b>
+            </h1>
             <form method="POST" action=".">
                 {% csrf_token %}
                 <div class="form-row">

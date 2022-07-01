@@ -85,12 +85,30 @@ def registrar_paciente(request):
         p.save()
         u = Prontuario(paciente=p, num_prontuario=b+c+d)
         u.save()
-        n = PSR(prontuario=u)
-        n.save()
-        o = Anamnese(prontuario=u)
-        o.save()
-        l = InfSaudeSistemica(prontuario=u)
-        l.save()
+        q = PSR(prontuario=u)
+        q.save()
+        r = Anamnese(prontuario=u)
+        r.save()
+        s = InfSaudeSistemica(prontuario=u)
+        s.save()
+        t = ExameFisico(prontuario=u)
+        t.save()
+        v = SinaisVitaisClinicos(prontuario=u)
+        v.save()
+        x = PSR(prontuario=u)
+        x.save()
+        y = OdontogramaInicial(prontuario=u)
+        y.save()
+        w = SolicitacaoExamesComplementares(prontuario=u)
+        w.save()
+        z = ResultadoExamesComplementares(prontuario=u)
+        z.save()
+        i = PlanoTratamentoI(prontuario=u)
+        i.save()
+        j = PlanoTratamentoII(prontuario=u)
+        j.save()
+        k = EvolucaoPaciente(prontuario=u)
+        k.save()
 
         messages.success(request, "Paciente registrado com sucesso")
         return redirect("pacientes")
@@ -145,28 +163,14 @@ def opcoes(request):
 def paciente_detalhes(request, pk=None):
     instance = Paciente.objects.get(pk=pk)
     prontuario = Prontuario.objects.get(pk=pk)
-    #dados_med = DadosMedicos.objects.get(pk=pk)
-    #med = Medicamentos.objects.get(pk=pk)
-    #saude = Saude.objects.get(pk=pk)
-    #exam = ExameFisicoIB.objects.get(pk=pk)
-    #plan = PlanoTratamento.objects.get(pk=pk)
-    #cond = CondOclusal.objects.get(pk=pk)
-    #odon = Odontograma.objects.get(pk=pk)
-    #psr = PSR.objects.get(pk=pk)
-    #anam = Anamnese.objects.get(pk=pk)
-    context = {
-        'object': instance,
-        'prontuario': prontuario,
 
-        #'dados_med': dados_med,
-        #'med': med,
-        #'sau': saude,
-        #'exam': exam,
-        #'plan': plan,
-        #'cond': cond,
-        #'odon': odon,
-        #'psr': psr,
-        #'anam': anam,
+    #data = Paciente.data_nascimento
+    #data_nascimento = data.strftime("%d-%b-%y")
+    context = {
+            'object': instance,
+            'prontuario': prontuario,
+            #'data_nascimento': data_nascimento,
+
     }
     return render(request, 'pacientes/paciente_detalhes2.html', context)
 
@@ -186,6 +190,9 @@ class PacienteUpdate(LoginRequiredMixin, UpdateView):
     fields = "__all__"
     template_name = "pacientes/paciente_editar2.html"
     #success_url = reverse_lazy("pacientes")
+
+
+
 
 
 class PacienteInfantilUpdate(LoginRequiredMixin, UpdateView):
