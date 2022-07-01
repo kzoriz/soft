@@ -165,13 +165,16 @@ class ExameFisico(models.Model):
     nodulos_linfaticos = models.TextField(verbose_name="Nódulos Linfáticos")
     amigdalas = models.TextField(verbose_name="Amígdalas")
     trigono_retromolar = models.TextField(verbose_name="Trígono Retromolar")
-    palato_duto = models.TextField(verbose_name="Palato Duro")
+    palato_duro = models.TextField(verbose_name="Palato Duro")
     palato_mole = models.TextField(verbose_name="Palato Mole")
     labios = models.TextField(verbose_name="Lábios")
     pele = models.TextField(verbose_name="Pele")
     atm = models.TextField(verbose_name="ATM")
     vestibulo = models.TextField(verbose_name="Vestíbulo")
     higiene_bucal = models.TextField(verbose_name="Higiene Bucal")
+
+    def __str__(self):
+        return self.prontuario.paciente.nome
 
     def get_absolute_url(self):
         return reverse("exa_fis_detalhes", kwargs={"pk": self.pk})
