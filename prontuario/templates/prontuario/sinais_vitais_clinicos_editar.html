@@ -5,20 +5,23 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-body"><br>
+            <h1 class="mb-3 text-primary">
+                <b>SINAIS VITAIS CLÍNICOS</b>
+            </h1>
             <form method="POST" action=".">
                 {% csrf_token %}
-                <div class="form-row">
+                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Prontuario</label>
-                        <input type="text" class="form-control" value="{{ object.prontuario }}">
+                        <input type="text" class="form-control" value="{{ object.prontuario }}" disabled>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Atualizado em:</label>
-                        <input type="text" class="form-control" value="" name="">
+                        <input type="text" class="form-control" value="{{ object.updated_at}}" name="updated_at" disabled>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Data</label>
-                        <input type="text" class="form-control" value="" name="">
+                        <label>Criado em:</label>
+                        <input type="text" class="form-control" value="{{ object.created_at}}" name="created_at" disabled>
                     </div>
                 </div>
                 <div class="form-row">

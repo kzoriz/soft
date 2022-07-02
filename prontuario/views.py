@@ -55,9 +55,10 @@ class ExameFisicoUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     login_url = reverse_lazy("login")
     extra_context = {'nome_pagina': 'Exame Fisico'}
     model = ExameFisico
-    fields = ['prontuario', 'nodulos_linfaticos', 'amigdalas', 'trigono_retromolar', 'palato_duto', 'palato_mole',
+    fields = ['nodulos_linfaticos', 'amigdalas', 'trigono_retromolar', 'palato_duro', 'palato_mole',
               'labios', 'pele', 'atm', 'vestibulo', 'higiene_bucal']
     template_name = "prontuario/exame_fisico_editar.html"
+    success_message = "Exame Físico atualizado com Sucesso!"
 
 
 def sinais_vitais_clinicos_detalhes(request, pk=None):

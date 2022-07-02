@@ -162,22 +162,22 @@ class ExameFisico(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     prontuario = models.ForeignKey(Prontuario, on_delete=models.CASCADE)
-    nodulos_linfaticos = models.TextField(verbose_name="Nódulos Linfáticos")
-    amigdalas = models.TextField(verbose_name="Amígdalas")
-    trigono_retromolar = models.TextField(verbose_name="Trígono Retromolar")
-    palato_duro = models.TextField(verbose_name="Palato Duro")
-    palato_mole = models.TextField(verbose_name="Palato Mole")
-    labios = models.TextField(verbose_name="Lábios")
-    pele = models.TextField(verbose_name="Pele")
-    atm = models.TextField(verbose_name="ATM")
-    vestibulo = models.TextField(verbose_name="Vestíbulo")
-    higiene_bucal = models.TextField(verbose_name="Higiene Bucal")
-
-    def __str__(self):
-        return self.prontuario.paciente.nome
+    nodulos_linfaticos = models.TextField(verbose_name="Nódulos Linfáticos", blank=True)
+    amigdalas = models.TextField(verbose_name="Amígdalas", blank=True)
+    trigono_retromolar = models.TextField(verbose_name="Trígono Retromolar", blank=True)
+    palato_duro = models.TextField(verbose_name="Palato Duro", blank=True)
+    palato_mole = models.TextField(verbose_name="Palato Mole", blank=True)
+    labios = models.TextField(verbose_name="Lábios", blank=True)
+    pele = models.TextField(verbose_name="Pele", blank=True)
+    atm = models.TextField(verbose_name="ATM", blank=True)
+    vestibulo = models.TextField(verbose_name="Vestíbulo", blank=True)
+    higiene_bucal = models.TextField(verbose_name="Higiene Bucal", blank=True)
 
     def get_absolute_url(self):
         return reverse("exa_fis_detalhes", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return self.prontuario.paciente.nome
 
 
 class SinaisVitaisClinicos(models.Model):

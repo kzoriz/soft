@@ -10,10 +10,14 @@
 }
 .botao_paciente {
     margin: 0.5%;
-   
+
 }
 #link {
     color: black;
   text-decoration: none;
 
+}
+h1 {
+  color: navy;
+  margin-left: 30px;
 }

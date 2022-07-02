@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 
 from prontuario.models import *
@@ -184,12 +185,12 @@ def paciente_detalhes_inf(request, pk=None):
     return render(request, 'pacientes/paciente_detalhes_inf.html', context)
 
 
-class PacienteUpdate(LoginRequiredMixin, UpdateView):
+class PacienteUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     login_url = reverse_lazy("login")
     model = Paciente
     fields = "__all__"
     template_name = "pacientes/paciente_editar2.html"
-    #success_url = reverse_lazy("pacientes")
+    success_message = "Paciente atualizado com Sucesso!"
 
 
 

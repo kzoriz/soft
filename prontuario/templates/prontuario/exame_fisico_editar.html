@@ -5,93 +5,90 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-body"><br>
+            <h1 class="mb-3 text-primary">
+                <b>EXAME FÍSICO</b>
+            </h1>
             <form method="POST" action=".">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Prontuario</label>
-                        <input type="text" class="form-control" value="{{ object.prontuario }}">
+                        <input type="text" class="form-control" value="{{ object.prontuario }}"disabled>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Atualizado em:</label>
-                        <input type="text" class="form-control" value="" name="">
+                        <input type="text" class="form-control" value="{{object.updated_at}}" name="" disabled>
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Data</label>
-                        <input type="text" class="form-control" value="" name="">
+                        <label>Criado em:</label>
+                        <input type="text" class="form-control" value="{{ object.created_at}}" name="" disabled>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Antecedentes Familiares</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.antecedentes_familiares }}" name="antecedentes_familiares">{{ object.antecedentes_familiares }}</textarea>
+                        <label>Nódulos Linfáticos</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.nodulos_linfaticos }}" name="nodulos_linfaticos">{{ object.nodulos_linfaticos }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Medicamentos em Uso</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.medicamentos_em_uso }}" name="medicamentos_em_uso">{{ object.medicamentos_em_uso }}</textarea>
+                        <label>Amigdalas</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.amigdalas }}" name="amigdalas">{{ object.amigdalas }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Cirurgias Anteriores</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.cirurgias_anteriores }}" name="cirurgias_anteriores">{{ object.cirurgias_anteriores }}</textarea>
+                        <label>Trigono Retromolar</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.trigono_retromolar }}" name="trigono_retromolar">{{ object.trigono_retromolar }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Problemas Cardiacos</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.problemas_cardiacos }}" name="problemas_cardiacos">{{ object.problemas_cardiacos }}</textarea>
+                        <label>Palato Duro</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.palato_duro }}" name="palato_duro">{{ object.palato_duro }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Problemas Gastrointestinais</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.problemas_gastrointestinais }}" name="problemas_gastrointestinais">{{ object.problemas_gastrointestinais }}</textarea>
+                        <label>Palato Mole</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.palato_mole }}" name="palato_mole">{{ object.palato_mole }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Alterações Sanguineas</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.alteracoes_sanguineas }}" name="alteracoes_sanguineas">{{ object.alteracoes_sanguineas }}</textarea>
+                        <label>Lábios</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.labios }}" name="labios">{{ object.labios }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Enfermidades Osseas</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.enfermidades_osseas }}" name="enfermidades_osseas">{{ object.enfermidades_osseas }}</textarea>
+                        <label>Pele</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.pele }}" name="pele">{{ object.pele }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Problemas Pulmonares</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.problemas_pulmonares }}" name="problemas_pulmonares">{{ object.problemas_pulmonares }}</textarea>
+                        <label>ATM</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.atm }}" name="atm">{{ object.atm }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Alergias</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.alergias }}" name="alergias">{{ object.alergias }}</textarea>
+                        <label>Vestíbulo</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.vestibulo }}" name="vestibulo">{{ object.vestibulo }}</textarea>
                     </div>
                 </div>
                 <div class="form-row">
                    <div class="form-group col-md-12">
-                        <label>Hábitos</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.habitos }}" name="habitos">{{ object.habitos }}</textarea>
-                    </div>
-                </div>
-                <div class="form-row">
-                   <div class="form-group col-md-12">
-                        <label>Há Alguma Informação Sobre Sua Saúde Que Não Foi Perguntada?</label>
-                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.observacao }}" name="observacao">{{ object.observacao }}</textarea>
+                        <label>Higiene Bucal</label>
+                        <textarea type="textarea" cols="40" rows="3" class="textarea form-control" value="{{ object.higiene_bucal }}" name="higiene_bucal">{{ object.higiene_bucal }}</textarea>
                     </div>
                 </div>
                 <div class="mr-1 text-right">
-                    <button type="submit" class="btn btn-primary text-white ">OK</button>
-                    <a href="{% url 'pacientes' %}" class="btn btn-secondary text-white" type="button">
-                        <span class="text">Voltar</span>
+                    <a href="{% url 'exa_fis_detalhes' object.pk %}" class="btn btn-secondary text-white" type="button">
+                        <span class="text">Cancelar</span>
                     </a>
+                    <button type="submit" class="btn btn-primary text-white ">OK</button>
                 </div>
             </form>
 
